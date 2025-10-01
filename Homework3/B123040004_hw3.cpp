@@ -22,17 +22,7 @@ class TSP {
         TSP() {
             MinDistance = 1000000;
         }
-        void Premutation(vector<Point> &cities, int start, int end) {
-            if (start == end) 
-                Distance(cities);
-            else {
-                for (int i = start; i <= end; i++) {
-                    swap(cities[start], cities[i]);
-                    Premutation(cities, start + 1, end);
-                    swap(cities[start], cities[i]);
-                }
-            }
-        }
+        
 
         void Distance(vector<Point> &cities) {
             double totalDistance = 0;
@@ -87,7 +77,6 @@ int main( ) {
 
     // implement tsp
     TSP tsp;
-    tsp.Premutation(cities, 0, cities.size() - 1);
     double minDistance = tsp.GetMinDistance();
     vector<Point> minPermResult = tsp.GetMinDistanceResult();
     
