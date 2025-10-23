@@ -22,9 +22,10 @@ class TSP {
         TSP() {
             MinDistance = 1000000;
         }
+        // The permutation function to generate all the possible paths
         void Premutation(vector<Point> &cities, int start, int end) {
             if (start == end) 
-                Distance(cities);
+                Distance(cities); 
             else {
                 for (int i = start; i <= end; i++) {
                     swap(cities[start], cities[i]);
@@ -34,6 +35,7 @@ class TSP {
             }
         }
 
+        // The function to calculate the distance of a certain path
         void Distance(vector<Point> &cities) {
             double totalDistance = 0;
 
@@ -41,6 +43,7 @@ class TSP {
                 totalDistance += sqrt(pow((cities[i].X - cities[i + 1].X), 2) + pow((cities[i].Y - cities[i + 1].Y), 2));
             }
             
+            // add the distance from the last city to the first city
             totalDistance += sqrt(pow((cities[0].X - cities[cities.size() - 1].X), 2) + pow((cities[0].Y - cities[cities.size() - 1].Y), 2));
             if (totalDistance < MinDistance) {
                 MinDistance = totalDistance;
