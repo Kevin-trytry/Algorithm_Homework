@@ -57,3 +57,5 @@ if (__name__ == "__main__"):
     ans_file = input("Please input the answer file name(e.g., ans.txt): ")
     fig_file = input("Please input the figure file name you want to output(e.g., fig.png): ")
     plot_png(point_file, ans_file, fig_file)
+
+
