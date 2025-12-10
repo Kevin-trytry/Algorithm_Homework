@@ -123,8 +123,6 @@ public:
             for (int idx : path_indices) {
                 MinDistanceResult.push_back(cities[idx]);
             }
-            // 根據 PDF 範例 ans.txt，通常列出 N 個點即可，不需要重複列出起點
-            // 距離計算已經包含了回到起點的成本
         }
     }
 
@@ -164,8 +162,8 @@ int main() {
 
     int x, y, pointNumber;
     while(in >> pointNumber >> x >> y) {
-        Point readin(cities.size(), x, y); // 使用 vector size 作為內部索引 (0-based)
-        readin.PointNumber = pointNumber;  // 保留原始的 ID (如 1, 2, 3...)
+        Point readin(cities.size(), x, y);
+        readin.PointNumber = pointNumber; 
         cities.push_back(readin);
     }
     in.close();

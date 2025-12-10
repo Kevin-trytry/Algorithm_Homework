@@ -1,0 +1,37 @@
+DP演算法定義與實作
+
+基本資料
+n : 城市的數量
+cities : 城市
+
+Part1. 計算距離矩陣：利用一個二維陣列，紀錄兩兩城市之間的距離
+
+Part2. 初始化dp表
+       (1) dp[mask][i]：當前為mask的城市組合，現在停在第i座城市的最短距離
+            mask -> 紀錄當前走過哪些城市，i -> 從開頭走到現在停在哪裡
+            e.g. dp[5][2]：mask = 5，代表101(2進制)，也就是去過城市0和2
+                           i = 2，代表現在停在城市2
+       (2) parent[mask][i]：當前為mask的城市組合，現在停在第i座城市，而上一座來自哪裡
+            e.g. parent[5][2] = 0：mask = 5，代表101(2進制)，也就是去過城市0和2
+                           i = 2，代表現在停在城市2，並且是從城市0走過來的
+
+Part3. dp迭代
+       (1) 第一層loop：迭代次數，就是2^n
+       (2) 第二層loop：i為當前走到的城市
+            用prev_mask去記錄走到i之前，有走過哪些城市
+                 => prev_mask = mask ^ (1 << i)，做XOR
+       (3) 第三層loop：找上一座城市j並執行dp公式
+            如果prev_mask包含j(prev_mask & (1 << j))，就執行：
+            1. dp[mask][i] = min{dp[prev_mask][j] + dist[j][i], dp[mask][i]}，意思就是試過每個走過的城市，從哪一個走到i距離最短
+            2. parent[mask][i] = j，紀錄上一座城市
+
+Part4. 形成閉路
+       之前已經走完所有城市的路徑了，但不知道最後走到哪一座，所以找
+       「前面走完所有點的累積距離 + 該城市走回起點的距離」，兩者加起來最小的就是終點
+
+Part5. 路徑回溯
+       curr_mask紀錄當前回溯到哪裡，curr_city紀錄當前城市
+       (1) 從最後一座城市開始，將curr_city push進path_indices
+       (2) 把該程式從curr_mask清除(做XOR)，並找到上一座城市(parent[curr_mask][curr_city])
+       (3) 重複直到回到起始點
+       最後做reverse，把座標轉成Point物件並回傳
