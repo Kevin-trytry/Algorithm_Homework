@@ -1,4 +1,4 @@
-mean distance: 439.554
+mean distance: 439.571
 distance: 432.086
 17
 37

@@ -81,7 +81,7 @@ private:
 public:
     // 建構子：初始化參數與矩陣
     ACO(const vector<Point>& pts) : cities(pts), n(pts.size()) {
-        num_ants = 30;      // 每一輪派 30 隻螞蟻
+        num_ants = 20;      // 每一輪派 30 隻螞蟻
         alpha = 1.0;        // 費洛蒙影響力
         beta = 2.0;         // 距離影響力 (傾向走近的)
         rho = 0.1;          // 每次揮發 10%
@@ -216,7 +216,7 @@ public:
         cout << "Max Evaluations per run: " << 10000 * n << endl;
 
         double sum_best_dists = 0; // 用來算平均值
-        int max_evals = 10000 * n;
+        int max_evals = 10000 * n; // 每次實驗的最大評估次數
         vector<Ant> ants(num_ants, Ant(n));
 
         // 執行多次實驗 (max_runs = 30)
