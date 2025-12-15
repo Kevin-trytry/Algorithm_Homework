@@ -7,7 +7,7 @@ def read_ans(filename):
     # Reading answers from the file
     try :
         with open(filename, 'r') as f:
-            for line in f.readlines()[1:]:
+            for line in f.readlines()[2:]:
                 ans.extend(list(map(int, line.split())))
     except:
         print("Error: Cannot open the answer file or file does not exist.")
